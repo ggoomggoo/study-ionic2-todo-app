@@ -11,6 +11,9 @@
     <ion-item *ngFor="let todo of todos">
       <h2>{{todo.title}}</h2>
       <p>{{todo.description}}</p>
+      <div item-end *ngIf="todo.complete">
+        <ion-icon name="checkbox-outline"></ion-icon>
+      </div>
     </ion-item>
   </ion-list>
 </ion-content>

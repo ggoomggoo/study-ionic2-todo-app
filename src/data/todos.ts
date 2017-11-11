@@ -3,7 +3,7 @@ export default [
         id: 1,
         title: 'work',
         description: 'work hard',
-        complete: false
+        complete: true
     },
     {
         id: 2,
