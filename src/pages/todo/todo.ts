@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import todos from '../../data/todos';
+
 /**
  * Generated class for the TodoPage page.
  *
@@ -14,6 +16,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'todo.html',
 })
 export class TodoPage implements OnInit {
+  todo: {
+    id: number,
+    title: string,
+    description: string,
+    complete: boolean
+  };
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -23,7 +31,17 @@ export class TodoPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.navParams.get('id'));
+    // console.log(this.navParams.get('id'));
+    this.todo = this.getTodo(this.navParams.get('id'));
+  }
+
+  getTodo(todoId) {
+    for (let todo of todos) {
+      if (todo.id === todoId) {
+        return todo;
+      }
+    }
+    return undefined;
   }
 
 }
