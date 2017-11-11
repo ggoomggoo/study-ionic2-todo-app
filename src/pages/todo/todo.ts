@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import todos from '../../data/todos';
+import * as _ from 'lodash';
 
 /**
  * Generated class for the TodoPage page.
@@ -32,7 +33,8 @@ export class TodoPage implements OnInit {
 
   ngOnInit() {
     // console.log(this.navParams.get('id'));
-    this.todo = this.getTodo(this.navParams.get('id'));
+    // this.todo = Object.assign({}, this.getTodo(this.navParams.get('id')));
+    this.todo = _.cloneDeep(this.getTodo(this.navParams.get('id')));
   }
 
   getTodo(todoId) {
@@ -44,4 +46,12 @@ export class TodoPage implements OnInit {
     return undefined;
   }
 
+  updateTodo(newTodo) {
+    for (let todo of todos) {
+      if (todo.id === newTodo.id) {
+        todo = newTodo;
+        this.navCtrl.popToRoot();
+      }
+    }
+  }
 }
