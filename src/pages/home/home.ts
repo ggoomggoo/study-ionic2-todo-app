@@ -1,6 +1,6 @@
 // import { Component, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 
 import todos from '../../data/todos'; // TODO: vs { todos }
 import { TodoPage } from '../todo/todo' // TODO: export deafult
@@ -18,7 +18,7 @@ export class HomePage {
     complete: boolean
   }[];
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
 
   }
 
@@ -30,6 +30,11 @@ export class HomePage {
     // ionic navation: push, pop(not ui-router)
     this.navCtrl.push(TodoPage, { id: todoId });
 
+  }
+
+  openNewTodo() {
+    let modal = this.modalCtrl.create(TodoPage, {id: 1}); // FIXME: temp connect page
+    modal.present();
   }
 
 }
